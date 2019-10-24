@@ -13,7 +13,7 @@ const types = gql`
       definition: [Definition]
     }
     type Query {
-      definition(id: Int!): [Definition]
+      definition(word: String!): [Definition]
       definitions: [Definition]
       words: [Word]
       word(id: Int!): [Word]

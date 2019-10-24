@@ -1,5 +1,5 @@
 import express from 'express'
-import { ApolloServer, gql } from 'apollo-server-express'
+import { ApolloServer } from 'apollo-server-express'
 
 import typeDefs from "../api/schema"
 import resolvers from "../api/resolvers"
@@ -15,6 +15,11 @@ const SERVER = new ApolloServer({
     playground: true, 
 })
 
-SERVER.applyMiddleware({ app })
+SERVER.applyMiddleware(
+    { 
+        app,
+        cors: true,
+    }
+)
 
 app.listen(PORT, () => console.log(`🚀 GraphQL playground is running at http://localhost:4000${SERVER.graphqlPath}`))
