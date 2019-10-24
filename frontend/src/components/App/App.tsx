@@ -1,5 +1,5 @@
 import React from 'react'
-import enhance from './enhance'
+import enhance from '../enhance'
 import { contains } from 'ramda'
 
 import './App.css'

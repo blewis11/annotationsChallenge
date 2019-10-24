@@ -4,7 +4,7 @@ import { isEmpty } from 'ramda'
 import gql from 'graphql-tag'
 
 import withWords from '../graphql/withWords'
-import Loading from './loading/loading'
+import Loading from './LoadingText/Loading'
 
 const displayLoadingState = branch(
   (props: any) => props.loading,
