@@ -20,3 +20,25 @@
 .App-link {
   color: #09d3ac;
 }
+
+.clickableWord {
+  color: purple;
+  cursor: pointer;
+}
+
+.textContainer {
+  width: 700px;
+  display: flex;
+  margin: auto;
+  padding-top: 20%
+}
+
+.mainText {
+  width: 50%;
+  padding-right: 30px;
+}
+
+.annotation {
+  width: 50%;
+  animation: fadein 1s;
+}

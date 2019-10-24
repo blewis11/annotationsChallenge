@@ -1,46 +1,17 @@
 import React from 'react'
-import { compose, withHandlers, withState } from 'recompose' 
-import { withApollo } from 'react-apollo'
-import gql from 'graphql-tag'
-import { isEmpty } from 'ramda'
-
-import withWords from '../graphql/withWords'
+import enhance from './enhance'
+import { contains } from 'ramda'
 
 import './App.css'
 
-const enhance = compose(
-  withWords,
-  withApollo,
-  withState('annotation', 'setAnnotation', ""),
-  withHandlers({
-    getAnnotation: (props: any) => async (wordToSearch: string) => {
-      const { setAnnotation } = props
+const getTokenizedText = (): string[] => {
+  const pageText = `Diese Studie untersucht einen neuen Behandlungsansatz der Krebsimmuntherapie für Betroffene mit
+  nicht-kleinzelligem Lungenkrebs. Es soll die beste Dosierung bezüglich Sicherheit und Wirksamkeit für
+  eine Kombinationstherapie mit zwei Prüfpräparaten, BI 836880 und BI 75409, gefunden werden, die
+  das Tumorwachstum auf unterschiedliche Weise hemmen.`
 
-      const { data: {definition} } = await props.client.query({
-        query: gql`
-        query getAnnotation($word: String!) {
-          definition(word: $word) {
-            id,
-            value
-          }
-        }
-        `,
-        variables: {
-          word: wordToSearch
-        },
-      })
-
-      console.log(definition)
-      if (definition && !isEmpty(definition)) {
-        setAnnotation(definition[0].value)
-      } else {
-        setAnnotation("Woops! Something went wrong with retrieving that definition")
-      }
-
-      return definition
-    } 
-  })
-)
+  return pageText.split(" ")
+}
 
 const App = (props: any) => {
   const {
@@ -49,19 +20,30 @@ const App = (props: any) => {
     annotation
   } = props
   
+  const text = getTokenizedText()
+  const textToDisplay = text.map((word, i) => {
+    if (words && contains(word, words)){
+      return (
+        <span 
+          className="clickableWord"
+          key={i}
+          onClick={() => getAnnotation(word)}>{word} </span>
+      )
+    }
+    return (
+      <span key={i}>{word} </span>
+    )
+  })
   return (
     <div className="App">
-      <div>
-        Diese Studie untersucht einen neuen Behandlungsansatz der <a onClick={() => getAnnotation("Kombinationstherapie")}> Krebsimmuntherapie </a> 
-        für Betroffene mit nicht-kleinzelligem Lungenkrebs. Es soll die beste Dosierung bezüglich
-        <a onClick={() => getAnnotation("Sicherheit")}> Sicherheit </a>und Wirksamkeit für
-        eine kombinierte Behandlung mit zwei Prüfpräparaten, BI 836880 und BI 75409, gefunden werden, die
-        das Tumorwachstum auf unterschiedliche Weise hemmen.
-      </div>
-      <div>
-        -------------
+    <div className="textContainer">
+      <div className="mainText">
+        {textToDisplay}
+      </div>     
+      <div className="annotation">
         {annotation}
       </div>
+    </div>
     </div>
   )
 }
