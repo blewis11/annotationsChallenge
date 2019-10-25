@@ -1,4 +1,4 @@
-## Frontend portion of the challenge
+## Backend portion of the challenge
 
 ### Build the code
 ```
