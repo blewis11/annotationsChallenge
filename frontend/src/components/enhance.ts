@@ -6,6 +6,8 @@ import gql from 'graphql-tag'
 import withWords from '../graphql/withWords'
 import Loading from './LoadingText/Loading'
 
+const DEFAULT_ANNOTATION_TEXT = "No word selected"
+
 const displayLoadingState = branch(
   (props: any) => props.loading,
   renderComponent(Loading),
@@ -15,7 +17,7 @@ const enhance = compose(
   withWords,
   displayLoadingState,
   withApollo,
-  withState('annotation', 'setAnnotation', ""),
+  withState('annotation', 'setAnnotation', DEFAULT_ANNOTATION_TEXT),
   withHandlers({
     getAnnotation: (props: any) => async (wordToSearch: string) => {
       const { setAnnotation } = props
@@ -34,7 +36,6 @@ const enhance = compose(
         },
       })
 
-      console.log(definition)
       if (definition && !isEmpty(definition)) {
         setAnnotation(definition[0].value)
       } else {

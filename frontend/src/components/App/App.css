@@ -22,7 +22,7 @@
 }
 
 .clickableWord {
-  color: purple;
+  color: rgb(246, 130, 30);
   cursor: pointer;
 }
 
@@ -35,10 +35,18 @@
 
 .mainText {
   width: 50%;
-  padding-right: 30px;
+  margin-right: 50px;
+  border: solid 0.5px grey;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
 }
 
 .annotation {
   width: 50%;
   animation: fadein 1s;
+  border: solid 0.5px grey;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
 }
