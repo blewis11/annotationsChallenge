@@ -40,6 +40,9 @@
   border-radius: 5px;
   padding: 10px;
   background-color: white;
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
+  box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
 }
 
 .annotation {
@@ -49,4 +52,7 @@
   background-color: white;
   border-radius: 5px;
   padding: 10px;
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
+  box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.29);
 }
