@@ -35,7 +35,7 @@ test('Should be able to retreieve a list of words to annotate', async (t) => {
 
   const { words } = data
 
-  t.is(words.length, 2)
+  t.is(words.length, 3)
 })
 
 test('Given a word, a definition should be returned', async (t) => {
