@@ -11,6 +11,12 @@ const words =  [
       value: 'Kombinationstherapie',
       definition: 2
   },
+  {
+      id: 3,
+      type: 'word',
+      value: 'Tumorwachstum',
+      definition: 3
+  }
 ]
 
 const definitions = [
@@ -27,6 +33,12 @@ const definitions = [
       kann dabei um die Behandlung mit mehreren Medikamenten oder auch um eine Anwendung mehrerer
       Therapieformen (z.B. Medikamente plus Bestrahlung) gehen. Nicht damit gemeint ist die Einnahme von
       mehreren Medikamenten zur Behandlung verschiedener Erkrankungen`,
+  },
+  {
+    id: 3,
+    type: 'definition',
+    value: `Tumoren können gutartig oder bösartig sein, fachsprachlich benigne oder maligne. 
+    Nur bösartige Tumoren bezeichnet man als Krebs`
   }
 ]
 
