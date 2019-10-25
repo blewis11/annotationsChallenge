@@ -28,7 +28,6 @@ const resolvers = {
         })
       },
       words: () => {
-        console.log(`we are in words query`)
         return data.filter(data => {
             return (data.type === 'word')
         })
