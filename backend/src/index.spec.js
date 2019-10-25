@@ -4,6 +4,7 @@ import { graphql } from 'graphql'
 
 import resolvers from './api/resolvers'
 import typeDefs from './api/schema'
+import { definitions } from './api/data'
 
 test.before(async (t) => {
   const schema = makeExecutableSchema({ typeDefs, resolvers })
@@ -28,12 +29,18 @@ test('Should be able to retreieve a list of words to annotate', async (t) => {
     }
   `
 
-  const result = await graphql(schema, query, null, {})
-  t.pass()
+  const { data }  = await graphql(schema, query, null, {})
+  
+  t.truthy(data.words)
+
+  const { words } = data
+
+  t.is(words.length, 2)
 })
 
 test('Given a word, a definition should be returned', async (t) => {
   const { schema } = t.context
+  const correctDefinition = definitions[1].value
 
   const query = `
     query getAnnotation($word: String!) {
@@ -43,9 +50,13 @@ test('Given a word, a definition should be returned', async (t) => {
       }
     }
   `
-  const wordToSearch = 'Kombinationstherapie'
-  const result = await graphql(schema, query, null, {}, {word: wordToSearch })
-  t.pass()
+
+  const { data } = await graphql(schema, query, null, {}, {word:  'Kombinationstherapie'})
+  t.truthy(data.definition)
+  
+  const { definition } = data
+  t.true(definition.length > 0)
+  t.is(definition[0].value, correctDefinition)
 })
 
 test('If an invalid word is given, a meaningful error is returned', async (t) => {
@@ -61,6 +72,7 @@ test('If an invalid word is given, a meaningful error is returned', async (t) =>
   `
   const wordToSearch = 'iamnotarealword'
   const result = await graphql(schema, query, null, {}, {word: wordToSearch })
-  console.log(JSON.stringify(result))
-  t.pass()
+  t.truthy(result.errors)
+  const { errors } = result
+  t.is(errors[0].message, "no word items found")
 })

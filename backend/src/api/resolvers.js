@@ -9,11 +9,10 @@ const resolvers = {
       definition: (root, { word }) => {
         const matchingWords = words.filter(item => {
             return item.value === word
-        }) // need to error handle
+        })
         
         if (isEmpty(matchingWords)){
-            console.log('no word items found')
-            return null;
+            throw new Error("no word items found")
         }
 
         return data.filter(data => {
