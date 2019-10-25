@@ -10,3 +10,5 @@ npm start
 ```
 npm run build
 ```
+
+#### Navigate to localhost:8080 to see the main screen

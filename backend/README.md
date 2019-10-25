@@ -11,3 +11,5 @@ npm start
 ```
 
 `:
+
+#### The server will be running on localhost:3000/graphql
