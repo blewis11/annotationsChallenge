@@ -10,6 +10,4 @@ npm run build
 npm start
 ```
 
-`:
-
 #### The server will be running on localhost:4000/graphql
