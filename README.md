@@ -1,4 +1,4 @@
-## Clariness Interview Challenge
+## Interview Challenge
 
 ### 1. Start Up Server
 ```
